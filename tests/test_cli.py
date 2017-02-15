@@ -164,11 +164,11 @@ def test_version_by_commit_check_build_status_succeeds(mocker, runner):
 def test_version_by_tag_check_build_status_succeeds(mocker, runner):
     orig = semantic_release.cli.config.get
 
-    def wrapped_config_get(*args):
+    def wrapped_config_get(*args, **kwargs):
         if (len(args) >= 2 and
                 args[0] == 'semantic_release' and args[1] == 'version_source'):
                 return 'tag'
-        return orig(*args)
+        return orig(*args, **kwargs)
     mocker.patch('semantic_release.cli.config.get', wrapped_config_get)
     mocker.patch('semantic_release.cli.config.getboolean', lambda *x: True)
     mock_check_build_status = mocker.patch('semantic_release.cli.check_build_status',
