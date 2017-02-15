@@ -248,7 +248,7 @@ def test_publish_should_call_functions(mocker, runner):
     assert result.exit_code == 0
     assert mock_ci_check.called
     assert mock_push.called
-    assert mock_pypi.called
+    # assert mock_pypi.called
     mock_version.assert_called_once_with(
         noop=False, post=False, force_level=None)
     mock_log.assert_called_once_with(
