@@ -1,0 +1,18 @@
+language: python
+python:
+  - "2.7"
+  - "3.5"
+  - "3.6"
+  - "nightly"
+install:
+  - pip install -r requirements/base.txt
+  - pip install -r requirements/dev.txt
+script:
+  - tox -e flake8
+  - tox -e isort
+  - tox -e py2-tests
+  - tox -e py3-tests
+  - tox -e coverage
+branches:
+  only:
+    - master
