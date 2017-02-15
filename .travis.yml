@@ -13,6 +13,13 @@ script:
   - tox -e py2-tests
   - tox -e py3-tests
   - tox -e coverage
+after_success:
+  - git fetch --unshallow
+  - git config --global user.name "semantic-release"
+  - git config --global user.email "semantic-release@travis-ci"
+  - pip3 install python-semantic-release
+  - semantic-release publish
+
 branches:
   only:
     - master
